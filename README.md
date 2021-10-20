@@ -1,7 +1,3 @@
-# Vue 3 + Vite
+> Demo Vue bug where relative `srcset` URLs are not transformed
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+It looks like `@vue/compiler-sfc` has a bug, introduced in `v3.0.0-beta.9` when [adding support for absolute URLs in `srcset`](https://github.com/vuejs/vue-next/commit/6a0be882d4ce95eb8d8093f273ea0e868acfcd24). This bug bypasses the [transformation that would've resolved the asset URLs in `srcset`](https://github.com/vuejs/vue-next/blob/5eb72630a53a8dd82c2b8a9705c21a8075161a3d/packages/compiler-sfc/src/templateTransformSrcset.ts#L98-L158).
